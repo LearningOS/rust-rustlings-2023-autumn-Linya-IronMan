@@ -10,22 +10,29 @@
 // I AM NOT DONE
 
 fn vec_loop(mut v: Vec<i32>) -> Vec<i32> {
+    // 进行一个可变迭代，在迭代的过程中修改迭代的元素
+    // iter() 是不可变迭代器，迭代过程中不可修改
     for element in v.iter_mut() {
         // TODO: Fill this up so that each element in the Vec `v` is
         // multiplied by 2.
-        ???
+        *element = *element * 2
     }
 
     // At this point, `v` should be equal to [4, 8, 12, 16, 20].
     v
 }
 
+//  NOTE：传入一个引用，返回值不是引用，那么很可能发生了内存分配
 fn vec_map(v: &Vec<i32>) -> Vec<i32> {
-    v.iter().map(|element| {
-        // TODO: Do the same thing as above - but instead of mutating the
-        // Vec, you can just return the new number!
-        ???
-    }).collect()
+    v.iter()
+        .map(|element| {
+            // TODO: Do the same thing as above - but instead of mutating the
+            // Vec, you can just return the new number!
+            element * 2
+        })
+        .collect()
+    // 将所有的内容 collect到一个新的 类型里面去
+    // collect 实际上会创建一个新的 vector 中去
 }
 
 #[cfg(test)]

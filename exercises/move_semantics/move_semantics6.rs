@@ -6,21 +6,13 @@
 // for a hint.
 
 fn main() {
-    let data = "Rust is great!".to_string();
+    let a = 123; // 编译通过
+    let a = "aaa".to_string(); // 编译错误
 
-    get_char(&data);
+    get_char(a);
 
-    string_uppercase(data);
+    print!("{}", a)
 }
 
 // Should not take ownership
-fn get_char(data: &String) -> char {
-    data.chars().last().unwrap()
-}
-
-// Should take ownership
-fn string_uppercase(mut data: String) {
-    data = data.to_uppercase();
-
-    println!("{}", data);
-}
+fn get_char(data: String) -> char {}
