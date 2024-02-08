@@ -16,7 +16,10 @@ struct Package {
     weight_in_grams: i32,
 }
 
+// 为 struct 实现方法
 impl Package {
+    // 约定俗称的，构造方法
+    // 返回类型可以写成 Self 代表当前正在实现的类型
     fn new(sender_country: String, recipient_country: String, weight_in_grams: i32) -> Package {
         if weight_in_grams <= 0 {
             panic!("Can not ship a weightless package.")
@@ -29,12 +32,20 @@ impl Package {
         }
     }
 
-    fn is_international(&self) -> ??? {
+    // 第一个参数：self &self &mut self
+    // 持有它，借用他，可变借用他
+    // self 与 &self 的区别
+    // 如果是 self，则 struct 调用这个方法之后，struct 就被销毁了。实际上相当于调用了一个函数，并将 struct 的所有权转移到这个函数中
+    // NOTE：什么时候回要所有权？
+    // 调用之后，不允许其他人做任何修改，就会直接销毁
+    fn is_international(&self) -> bool {
         // Something goes here...
+        self.sender_country != self.recipient_country
     }
 
-    fn get_fees(&self, cents_per_gram: i32) -> ??? {
+    fn get_fees(&self, cents_per_gram: i32) -> i32 {
         // Something goes here...
+        self.weight_in_grams = cents_per_gram
     }
 }
 
