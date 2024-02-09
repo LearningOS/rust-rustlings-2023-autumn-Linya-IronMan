@@ -11,8 +11,10 @@
 
 mod delicious_snacks {
     // TODO: Fix these use statements
-    use self::fruits::PEAR as ???
-    use self::veggies::CUCUMBER as ???
+    // NOTE: pub use
+    // 将其他模块的其他东西 "重新命名" 使用
+    pub use self::fruits::PEAR as fruit;
+    pub use self::veggies::CUCUMBER as veggle;
 
     mod fruits {
         pub const PEAR: &'static str = "Pear";

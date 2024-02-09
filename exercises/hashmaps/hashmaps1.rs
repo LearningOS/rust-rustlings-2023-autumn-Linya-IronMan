@@ -16,12 +16,16 @@
 use std::collections::HashMap;
 
 fn fruit_basket() -> HashMap<String, u32> {
-    let mut basket = // TODO: declare your hash map here.
+    // NOTE: v 对应的数据类型推导是 u32 类型
+    let mut basket = HashMap::new(); // TODO: declare your hash map here.
 
     // Two bananas are already given for you :)
+    // NOTE: 此处是 hashmap 的第一次插入，如果将 2改成 2 as u64 那么hashmap 的类型推导就会变成 u64
     basket.insert(String::from("banana"), 2);
 
     // TODO: Put more fruits in your basket here.
+    basket.insert(String::from("apple"), 2);
+    basket.insert(String::from("mango"), 2);
 
     basket
 }

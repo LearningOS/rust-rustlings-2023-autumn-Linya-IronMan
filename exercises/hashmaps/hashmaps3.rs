@@ -39,6 +39,27 @@ fn build_scores_table(results: String) -> HashMap<String, Team> {
         // will be the number of goals conceded from team_2, and similarly
         // goals scored by team_2 will be the number of goals conceded by
         // team_1.
+        // NOTE: or_insert or_insert_with 区别
+        // 通常，后面有 with 的区别:
+        // or_insert：直接携带默认值，或者执行一个函数获取具体的值。
+        // or_insert_with：参数中是一个匿名函数，懒惰执行
+        // or_insert 功能：如果 entry 对应的值存在的话，不执行。如果不存在的话，才会将默认的值插入进去
+        // or_insert 即便之前的值已经存在，也会计算出 default 默认值，只是最后扔掉了。
+        // or_insert_with：只有在原本不存在 key 的时候，才会执行闭包
+        let e = scores.entry(team_1_name).or_insert(Team {
+            goals_scored: 0,
+            goals_conceded: 1,
+        });
+        e.goals_scored += team_1_score;
+        e.goals_conceded += team_2_score;
+
+        // || 相当于创建了一个闭包
+        let e = scores.entry(team_2_name).or_insert_with(|| Team {
+            goals_scored: 0,
+            goals_conceded: 0,
+        });
+        e.goals_scored += team_2_score;
+        e.goals_conceded += team_1_score;
     }
     scores
 }

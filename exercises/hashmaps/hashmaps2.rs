@@ -18,6 +18,8 @@
 
 use std::collections::HashMap;
 
+// NOTE: HashMap 插入的 key 必须是能够 hash 的类型，
+// key 能够有方法，将值转换成 hash 值
 #[derive(Hash, PartialEq, Eq)]
 enum Fruit {
     Apple,
@@ -40,6 +42,9 @@ fn fruit_basket(basket: &mut HashMap<Fruit, u32>) {
         // TODO: Insert new fruits if they are not already present in the
         // basket. Note that you are not allowed to put any type of fruit that's
         // already present!
+        // NOTE: entry 会返回一个 Entry 类型变量，代表 Hashmap 中的一个条目
+        // 通过这个条目变量，可以进一步获取到这个条目对应的值是什么
+        basket.entry(fruit).or_insert(10);
     }
 }
 
@@ -81,7 +86,7 @@ mod tests {
         let count = basket.values().sum::<u32>();
         assert!(count > 11);
     }
-    
+
     #[test]
     fn all_fruit_types_in_basket() {
         let mut basket = get_fruit_basket();
