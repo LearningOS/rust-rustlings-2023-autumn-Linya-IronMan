@@ -11,12 +11,13 @@
 
 // I AM NOT DONE
 
-pub fn generate_nametag_text(name: String) -> Option<String> {
+// NOTE: &'static str 与 String 都可以作为 Err 携带的数据类型
+pub fn generate_nametag_text(name: String) -> Resut<String, String> {
     if name.is_empty() {
         // Empty names aren't allowed.
-        None
+        Err("'name' was empty; it must be nonempty".into())
     } else {
-        Some(format!("Hi! My name is {}", name))
+        Ok(format!("Hi! My name is {}", name))
     }
 }
 

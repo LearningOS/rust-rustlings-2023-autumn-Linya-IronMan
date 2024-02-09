@@ -24,14 +24,25 @@ impl ParsePosNonzeroError {
     fn from_creation(err: CreationError) -> ParsePosNonzeroError {
         ParsePosNonzeroError::Creation(err)
     }
+
     // TODO: add another error conversion function here.
     // fn from_parseint...
+    fn from_parseint(err: ParseIntError) -> ParsePosNonzeroError {
+        ParsePosNonzeroError::ParseInt(err)
+    }
 }
 
 fn parse_pos_nonzero(s: &str) -> Result<PositiveNonzeroInteger, ParsePosNonzeroError> {
     // TODO: change this to return an appropriate error instead of panicking
     // when `parse()` returns an error.
-    let x: i64 = s.parse().unwrap();
+    // NOTE: parse 返回的错误是 ParseIntError，外层想反悔的是 ParsePosNonzeroError，错误不能直接抛出，需要转换
+    // map_err 对错误进行转换，将标准库的错误类型转换成自定义的错误类型
+    // 这种实现方法非常笨重，十几种，会给自定义的错误类型实现一个 标准库的Error trait以及 from trait，帮助进行转换
+    // 不用再手动写很多代码
+    // let x: i64 = s.parse().unwrap();
+    let x = s
+        .parse()
+        .map_err(ParsePosNonzeroError::from_creation(err))?;
     PositiveNonzeroInteger::new(x).map_err(ParsePosNonzeroError::from_creation)
 }
 

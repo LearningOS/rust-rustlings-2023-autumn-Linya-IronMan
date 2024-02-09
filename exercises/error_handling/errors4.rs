@@ -13,11 +13,19 @@ enum CreationError {
     Negative,
     Zero,
 }
+// anyhow thiserror 两个库，帮助编写自定义类型的错误
 
 impl PositiveNonzeroInteger {
     fn new(value: i64) -> Result<PositiveNonzeroInteger, CreationError> {
         // Hmm...? Why is this only returning an Ok value?
-        Ok(PositiveNonzeroInteger(value as u64))
+        // 手动进行一些类型转换
+        if value > 0 {
+            Ok(PositiveNonzeroInteger(value as u64))
+        } else if value == 0 {
+            Err(CreationError::Zero)
+        } else {
+            Err(CreationError::Negative)
+        }
     }
 }
 

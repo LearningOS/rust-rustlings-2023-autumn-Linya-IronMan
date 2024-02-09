@@ -9,12 +9,24 @@
 
 // I AM NOT DONE
 
+use std::ops::Add;
+
+// NOTE: 不要将 trait 与其他语言的接口作类比
+// 可以理解为标签。某个类型被打上了标签，就具有了标签拥有的功能
+// 在特定的上下文中，帮助找到所要的类型的作用
 trait AppendBar {
     fn append_bar(self) -> Self;
 }
 
+// 打上了标签，具有一个名字为 append_bar 的方法
+// 方法的具体实现可以在此处实现
 impl AppendBar for String {
     // TODO: Implement `AppendBar` for type `String`.
+    // 如果改成&mut，需要如何修改
+    fn append_bar(&mut self) -> Self {
+        self.add("Bar".into());
+        self.to_owned()
+    }
 }
 
 fn main() {

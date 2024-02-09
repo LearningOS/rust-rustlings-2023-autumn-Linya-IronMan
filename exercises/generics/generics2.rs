@@ -8,11 +8,15 @@
 
 // I AM NOT DONE
 
-struct Wrapper {
-    value: u32,
+// NOTE: 上面是定义了一个类型参数，下面是使用这个类型参数
+struct Wrapper<T> {
+    value: T,
 }
 
-impl Wrapper {
+// NOTE: 两个类型参数
+// impl<T> 定义了一个类型参数
+// Wrapper<T> 使用了之前定义的类型参数
+impl<T> Wrapper<T> {
     pub fn new(value: u32) -> Self {
         Wrapper { value }
     }

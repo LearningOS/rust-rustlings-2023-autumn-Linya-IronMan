@@ -23,7 +23,12 @@ impl Licensed for SomeSoftware {}
 impl Licensed for OtherSoftware {}
 
 // YOU MAY ONLY CHANGE THE NEXT LINE
-fn compare_license_types(software: ??, software_two: ??) -> bool {
+// NOTE: impl 是静态分发，会按照使用的类型，在编译的时候，进行代码的分发替换
+// 调用效率会比较高，但是代码会膨胀
+// 动态分发 &dyn Licensed 动态分发一定要放在一个指针后面
+// 传参要依靠压栈、弹栈、寄存器来实现，需要确定类型的大小。
+// dyn 如果不跟在指针后面，就无法确认大小
+fn compare_license_types(software: impl Licensed, software_two: impl Licensed) -> bool {
     software.licensing_info() == software_two.licensing_info()
 }
 
