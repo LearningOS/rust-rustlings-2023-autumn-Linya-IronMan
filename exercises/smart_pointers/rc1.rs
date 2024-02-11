@@ -36,9 +36,13 @@ impl Planet {
 }
 
 fn main() {
+    // NOTE: Rc 引用的创建
     let sun = Rc::new(Sun {});
+    // NOTE: string_count 强引用的数联？双向链表 A 有 B 的一个引用，B 有 A 的一个引用，系统自动释放的时候不明确是否要释放，二者相互持有引用，是不是永远也删不掉了呢？
+    // 强弱引用就是用来干这个的
     println!("reference count = {}", Rc::strong_count(&sun)); // 1 reference
 
+    // NOTE: 使用Rc::clone() 与 sun.clone() 一样，拷贝的时候会增加一个引用计数；释放的时候会减少一个引用计数
     let mercury = Planet::Mercury(Rc::clone(&sun));
     println!("reference count = {}", Rc::strong_count(&sun)); // 2 references
     mercury.details();
@@ -60,22 +64,23 @@ fn main() {
     jupiter.details();
 
     // TODO
-    let saturn = Planet::Saturn(Rc::new(Sun {}));
+    let saturn = Planet::Saturn(Rc::clone(&sun));
     println!("reference count = {}", Rc::strong_count(&sun)); // 7 references
     saturn.details();
 
     // TODO
-    let uranus = Planet::Uranus(Rc::new(Sun {}));
+    let uranus = Planet::Uranus(Rc::clone(&sun));
     println!("reference count = {}", Rc::strong_count(&sun)); // 8 references
     uranus.details();
 
     // TODO
-    let neptune = Planet::Neptune(Rc::new(Sun {}));
+    let neptune = Planet::Neptune(Rc::clone(&sun));
     println!("reference count = {}", Rc::strong_count(&sun)); // 9 references
     neptune.details();
 
     assert_eq!(Rc::strong_count(&sun), 9);
 
+    // NOTE: 手动释放引用。
     drop(neptune);
     println!("reference count = {}", Rc::strong_count(&sun)); // 8 references
 
@@ -92,12 +97,15 @@ fn main() {
     println!("reference count = {}", Rc::strong_count(&sun)); // 4 references
 
     // TODO
+    drop(earth);
     println!("reference count = {}", Rc::strong_count(&sun)); // 3 references
 
     // TODO
+    drop(venus);
     println!("reference count = {}", Rc::strong_count(&sun)); // 2 references
 
     // TODO
+    drop(mercury);
     println!("reference count = {}", Rc::strong_count(&sun)); // 1 reference
 
     assert_eq!(Rc::strong_count(&sun), 1);

@@ -5,6 +5,7 @@
 // itself another value of the same type. To get around the issue, we can use a
 // `Box` - a smart pointer used to store data on the heap, which also allows us
 // to wrap a recursive type.
+// NOTE：是对一个简单罗指针的简单包装
 //
 // The recursive type we're implementing in this exercise is the `cons list` - a
 // data structure frequently found in functional programming languages. Each
@@ -21,8 +22,9 @@
 // I AM NOT DONE
 
 #[derive(PartialEq, Debug)]
+// NOTE: 自己包含自己的类型 recursive type
 pub enum List {
-    Cons(i32, List),
+    Cons(i32, Box<List>),
     Nil,
 }
 
@@ -35,11 +37,12 @@ fn main() {
 }
 
 pub fn create_empty_list() -> List {
-    todo!()
+    List::Nil
 }
 
+// NOTE: 创建一个链表
 pub fn create_non_empty_list() -> List {
-    todo!()
+    List::Cons(10, Box::new(List::Cons(20, Box::new(List::Nil))))
 }
 
 #[cfg(test)]
