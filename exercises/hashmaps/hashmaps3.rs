@@ -14,11 +14,10 @@
 // Execute `rustlings hint hashmaps3` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
-
 use std::collections::HashMap;
 
 // A structure to store the goal details of a team.
+#[derive(Debug)]
 struct Team {
     goals_scored: u8,
     goals_conceded: u8,
@@ -48,7 +47,7 @@ fn build_scores_table(results: String) -> HashMap<String, Team> {
         // or_insert_with：只有在原本不存在 key 的时候，才会执行闭包
         let e = scores.entry(team_1_name).or_insert(Team {
             goals_scored: 0,
-            goals_conceded: 1,
+            goals_conceded: 0,
         });
         e.goals_scored += team_1_score;
         e.goals_conceded += team_2_score;
@@ -93,6 +92,7 @@ mod tests {
     fn validate_team_score_1() {
         let scores = build_scores_table(get_results());
         let team = scores.get("England").unwrap();
+        println!("{:?}", team);
         assert_eq!(team.goals_scored, 5);
         assert_eq!(team.goals_conceded, 4);
     }

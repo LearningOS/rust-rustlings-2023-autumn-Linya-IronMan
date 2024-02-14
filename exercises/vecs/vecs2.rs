@@ -7,8 +7,6 @@
 //
 // Execute `rustlings hint vecs2` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
-
 fn vec_loop(mut v: Vec<i32>) -> Vec<i32> {
     // 进行一个可变迭代，在迭代的过程中修改迭代的元素
     // iter() 是不可变迭代器，迭代过程中不可修改

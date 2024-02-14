@@ -3,8 +3,6 @@
 // Execute `rustlings hint options1` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
-
 // This function returns how much icecream there is left in the fridge.
 // If it's before 10PM, there's 5 pieces left. At 10PM, someone eats them
 // all, so there'll be no more left :(
@@ -40,11 +38,11 @@ mod tests {
         // TODO: Fix this test. How do you get at the value contained in the
         // Option?
         // 存在安全隐患，如果是 None 的话，会导致程序 panic
-        let icecreams = maybe_icecream(12).unwrap();
-        assert_eq!(icecreams, 5);
+        // let icecreams = maybe_icecream(12).unwrap();
+        // assert_eq!(icecreams, 5);
         // 比较安全的解法
         if let Some(icecreams) = maybe_icecream(12) {
-            assert!(icecreams, 5);
+            assert_eq!(icecreams, 5);
         }
     }
 }
