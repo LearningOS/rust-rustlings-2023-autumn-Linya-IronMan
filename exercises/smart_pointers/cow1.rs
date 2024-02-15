@@ -13,8 +13,6 @@
 //
 // Execute `rustlings hint cow1` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
-
 use std::borrow::Cow;
 
 // NOTE: 修改的时候会复制，不修改的时候不复制

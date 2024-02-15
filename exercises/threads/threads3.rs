@@ -3,8 +3,6 @@
 // Execute `rustlings hint threads3` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
-
 // NOTE: 管道。分配任务 很多生产者，一个消费者，多个输入单个输出
 // 一般用于线程间分享消息
 use std::sync::mpsc;

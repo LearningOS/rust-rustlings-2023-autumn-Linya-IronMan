@@ -7,8 +7,6 @@
 // Execute `rustlings hint traits5` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
-
 mod AA {
     pub trait T1 {
         fn foo(&self) {}

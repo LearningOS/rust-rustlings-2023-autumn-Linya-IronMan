@@ -27,8 +27,3 @@ fn fill_vec() -> Vec<i32> {
 
     vec
 }
-
-fn fill_vec() -> &[i32] {
-    let a = [1, 2, 3];
-    &a
-}

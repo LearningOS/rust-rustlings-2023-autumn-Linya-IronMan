@@ -9,8 +9,6 @@
 // Execute `rustlings hint errors6` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
-
 use std::num::ParseIntError;
 
 // This is a custom error type that we will be using in `parse_pos_nonzero()`.
@@ -40,9 +38,7 @@ fn parse_pos_nonzero(s: &str) -> Result<PositiveNonzeroInteger, ParsePosNonzeroE
     // 这种实现方法非常笨重，十几种，会给自定义的错误类型实现一个 标准库的Error trait以及 from trait，帮助进行转换
     // 不用再手动写很多代码
     // let x: i64 = s.parse().unwrap();
-    let x = s
-        .parse()
-        .map_err(ParsePosNonzeroError::from_creation(err))?;
+    let x = s.parse().map_err(ParsePosNonzeroError::from_parseint)?;
     PositiveNonzeroInteger::new(x).map_err(ParsePosNonzeroError::from_creation)
 }
 

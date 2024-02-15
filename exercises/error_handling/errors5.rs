@@ -22,8 +22,6 @@
 // Execute `rustlings hint errors5` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
-
 use std::error;
 use std::fmt;
 use std::num::ParseIntError;
@@ -40,6 +38,7 @@ use std::num::ParseIntError;
 // 1. 指针指向调用的结构体是哪个结构体
 // 2. 指针指向这个类型对应的 vtable【c++概念】
 // 指针里面放一个 trait + dyn
+use std::error::Error;
 fn main() -> Result<(), Box<dyn Error>> {
     let pretend_user_input = "42";
     let x: i64 = pretend_user_input.parse()?;

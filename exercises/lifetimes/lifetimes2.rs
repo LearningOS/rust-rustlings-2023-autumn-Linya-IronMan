@@ -6,8 +6,6 @@
 // Execute `rustlings hint lifetimes2` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
-
 fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {
     if x.len() > y.len() {
         x
@@ -15,8 +13,6 @@ fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {
         y
     }
 }
-
-fn longest1<'a, 'b>(x: &'a str, y: &'b str) -> &'a str {}
 
 fn main() {
     let string1 = String::from("long string is long");

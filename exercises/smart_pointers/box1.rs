@@ -19,8 +19,6 @@
 //
 // Execute `rustlings hint box1` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
-
 #[derive(PartialEq, Debug)]
 // NOTE: 自己包含自己的类型 recursive type
 pub enum List {

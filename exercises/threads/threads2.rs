@@ -7,8 +7,6 @@
 // Execute `rustlings hint threads2` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
-
 use std::sync::Arc;
 // NOTE: 保护在线程中分享的数据，并且内部是可变的（不管外部是否可变）
 use std::sync::Mutex;

@@ -6,8 +6,6 @@
 // Execute `rustlings hint generics1` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
-
 fn main() {
     // NOTE：Vec<_> 只关心外层是一个 Vector 即可，内部类型不关心
     // 也可以什么类型都不写，让编译器自动进行类型推导

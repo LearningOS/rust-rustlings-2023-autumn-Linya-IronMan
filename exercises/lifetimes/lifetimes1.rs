@@ -8,8 +8,6 @@
 // Execute `rustlings hint lifetimes1` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
-
 // NOTE: 返回值的声明周期，不能比 x y 的生命周期长。输入的生命周期不能比输出的生命周期还要长
 // 这是为了安全的使用返回值考虑的
 fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {

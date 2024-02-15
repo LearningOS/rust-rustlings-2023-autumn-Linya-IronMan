@@ -6,8 +6,6 @@
 // Execute `rustlings hint generics2` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
-
 // NOTE: 上面是定义了一个类型参数，下面是使用这个类型参数
 struct Wrapper<T> {
     value: T,
@@ -17,7 +15,7 @@ struct Wrapper<T> {
 // impl<T> 定义了一个类型参数
 // Wrapper<T> 使用了之前定义的类型参数
 impl<T> Wrapper<T> {
-    pub fn new(value: u32) -> Self {
+    pub fn new(value: T) -> Self {
         Wrapper { value }
     }
 }

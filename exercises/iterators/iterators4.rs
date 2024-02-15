@@ -3,8 +3,6 @@
 // Execute `rustlings hint iterators4` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
-
 // pub fn factorial(num: u64) -> u64 {
 //     // Complete this function to return the factorial(阶乘) of num
 //     // Do not use:
@@ -20,19 +18,20 @@
 // }
 
 // NOTE: 递归方法
-pub fn factorial(num: u64) -> u64 {
-    if num == 0 {
-        1
-    } else {
-        factorial(num - 1) * num
-    }
-}
+// pub fn factorial(num: u64) -> u64 {
+//     if num == 0 {
+//         1
+//     } else {
+//         factorial(num - 1) * num
+//     }
+// }
 
 // NOTE: (1..=num) 从 1 到 num
 // NOTE: fold 任何形式的累计操作，都可以使用 fold
 // 类似 JS 中的 reduce 函数
 pub fn factorial(num: u64) -> u64 {
-    (1..=num).fold(0, |a, b| a * b)
+    (1..=num).fold(1, |a, b| a * b)
+    // (1..=num).product()// 表示1到num中所有的数字的乘积
 }
 
 #[cfg(test)]
